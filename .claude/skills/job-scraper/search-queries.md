@@ -1,6 +1,6 @@
 # Search Queries for Job Scraper
 
-<!-- SETUP: Customize these queries based on your skills, target roles, and location -->
+<!-- Customized for Jakarta / Indonesia job market (Oct 2026). Re-run /setup to refine. -->
 
 ## Installed portal CLIs (primary for `/scrape`)
 
@@ -12,69 +12,81 @@ The `site:` query templates in this file are the **WebSearch fallback** — for 
 
 ## Search Sites
 
-Primary (your market's job boards - scaffold one with `/add-portal`):
-- **[YOUR_JOB_BOARD]** - your market's largest general job board
-- **linkedin.com/jobs** - LinkedIn job listings (filter: [YOUR_COUNTRY] / [YOUR_CITY]); also covered by `linkedin-search` CLI
-- **[YOUR_INDUSTRY_JOB_BOARD]** - a niche/industry board for your field (optional)
-- **[YOUR_ADDITIONAL_JOB_BOARD]** - another major board for your market (optional)
+Market: **Indonesia — Jakarta / Jabodetabek** (plus remote roles open to Indonesia).
 
-Secondary (company career pages via Google):
-- Direct Google searches with `site:` filters for known target companies
+Primary:
+- **linkedin.com/jobs** — covered by the `linkedin-search` CLI. Always pass `--location "Jakarta, Indonesia"` (or `"Indonesia"` with `--remote remote`).
+- **id.jobstreet.com** — Indonesia's largest general board (WebSearch fallback until a CLI is added with `/add-portal`).
+- **glints.com/id** — startups and scale-ups, strong for growth/ops/marketing roles.
+- **kalibrr.com** — tech, startups and corporate roles in Indonesia.
+- **dealls.com** — startup and professional roles in Jakarta.
+
+Secondary:
+- `freehire-search` CLI for tech/data roles (`--country` Indonesia or remote).
+- Company career pages via `site:` searches (sports, lifestyle, hospitality, logistics/transport, associations).
+
+Danish demo portals (jobindex, jobnet, jobbank, jobdanmark) stay `enabled: false`.
 
 ## Query Categories
 
-Queries are grouped by priority. Write **each category in every language from your Languages table** (see Language scope above). Combine each query with your location terms (e.g. your city, region, or metro area) where the site supports it.
+Write every category in **English and Bahasa Indonesia** — Indonesian postings mix both. Organize by function, not exact title.
 
-**Organize by function, not job title.** The same underlying work carries different titles across companies and markets (a "Data Scientist" role at one employer may be posted as "Insights Analyst" or "Data Consultant" at another). Name each priority category after the function it covers, and list several plausible job titles as query variants within that category rather than betting an entire priority tier on one exact title string.
-
-### Priority 1: [YOUR_PRIMARY_ROLE_TYPE]
-
-These match your strongest and most desired career direction.
+### Priority 1: Growth, Operations & Systems
 
 ```
-site:[YOUR_JOB_BOARD] "[YOUR_PRIMARY_JOB_TITLE_1]" [YOUR_CITY]
-site:[YOUR_JOB_BOARD] "[YOUR_PRIMARY_JOB_TITLE_2]" [YOUR_CITY]
-site:[YOUR_JOB_BOARD] "[YOUR_KEY_SKILL]" [YOUR_CITY]
-site:linkedin.com/jobs "[YOUR_PRIMARY_JOB_TITLE_1]" [YOUR_COUNTRY]
+site:linkedin.com/jobs "growth specialist" Jakarta
+site:linkedin.com/jobs "operations specialist" OR "business operations" Jakarta
+site:id.jobstreet.com "growth" "operations" Jakarta
+site:glints.com/id "growth" OR "operations" Jakarta
+site:kalibrr.com "community" OR "growth" Jakarta
+"spesialis operasional" OR "staf operasional" Jakarta lowongan
 ```
 
-### Priority 2: [YOUR_DOMAIN_EXPERTISE]
+Titles to try as variants: Growth Specialist, Growth Associate, Operations Specialist, Business Operations Associate, Community Manager, Program/League Coordinator, Systems & Operations Analyst, Business Process Analyst.
 
-These match your domain expertise.
-
-```
-site:[YOUR_JOB_BOARD] [YOUR_DOMAIN_KEYWORD_1] [YOUR_CITY] OR [YOUR_REGION]
-site:[YOUR_JOB_BOARD] [YOUR_DOMAIN_KEYWORD_2] [YOUR_COUNTRY]
-site:linkedin.com/jobs [YOUR_DOMAIN_KEYWORD_1] [YOUR_CITY] [YOUR_COUNTRY]
-```
-
-### Priority 3: [YOUR_ADJACENT_ROLE_TYPE]
-
-Adjacent roles you could pivot into.
+### Priority 2: Data, Reporting & Automation
 
 ```
-site:[YOUR_JOB_BOARD] "[YOUR_ADJACENT_TITLE_1]" [YOUR_KEY_SKILL] [YOUR_CITY]
-site:[YOUR_JOB_BOARD] "[YOUR_ADJACENT_TITLE_2]" [YOUR_KEY_SKILL] [YOUR_CITY]
+site:linkedin.com/jobs "data analyst" OR "reporting analyst" Jakarta
+site:linkedin.com/jobs "business intelligence" OR "dashboard" Jakarta
+site:id.jobstreet.com "data analyst" OR "admin data" Jakarta
+site:glints.com/id "data analyst" OR "MIS" Jakarta
+"analis data" OR "staf MIS" OR "admin data" Jakarta lowongan
 ```
 
-### Priority 4: Broader Technical / Consulting
+Titles: Data Analyst, Reporting Analyst, MIS Staff, BI Analyst (junior), Automation/No-code Specialist, Google Workspace / Apps Script admin.
 
-Wider net for general technical roles.
+### Priority 3: Visual Content & Marketing
 
 ```
-site:[YOUR_JOB_BOARD] [YOUR_KEY_SKILL] developer [YOUR_CITY]
-site:linkedin.com/jobs "[YOUR_KEY_SKILL] developer" [YOUR_CITY]
-site:[YOUR_JOB_BOARD] "technical consultant" [YOUR_DOMAIN] [YOUR_CITY]
+site:linkedin.com/jobs "content designer" OR "graphic designer" Jakarta
+site:glints.com/id "graphic designer" OR "content creator" Jakarta
+site:id.jobstreet.com "desain grafis" OR "visual content" Jakarta
+"digital marketing" OR "social media specialist" Jakarta lowongan
 ```
+
+Titles: Visual Content Designer, Graphic Designer (Canva/Figma), Social Media Specialist, Digital Marketing Executive, Marketing Communications Officer.
+
+### Priority 4: Administration, Secretariat & Project Admin
+
+```
+site:id.jobstreet.com "sekretariat" OR "staf sekretariat" Jakarta
+site:id.jobstreet.com "project admin" OR "project administrator" Jakarta
+site:linkedin.com/jobs "project coordinator" OR "program officer" Jakarta
+"staf administrasi" OR "admin proyek" Jakarta lowongan
+```
+
+Titles: Secretariat Staff, Project Admin/Coordinator, Program Officer (associations, NGOs, industry bodies), Executive/Office Admin.
 
 ## Location Filter
 
-When evaluating results, verify the job location is within reasonable commute distance from your home. Define acceptable areas:
-- [YOUR_CITY] and surrounding areas
-- [ACCEPTABLE_AREA_1]
-- [ACCEPTABLE_AREA_2]
-- [BORDERLINE_AREA] (borderline - ~X min by transit)
-- [TOO_FAR_AREA] (too far)
+Acceptable:
+- Jakarta (all areas) and South Tangerang / BSD
+- Depok, Bekasi, Tangerang — borderline depending on office location
+- Remote or hybrid open to Indonesia-based candidates
+- Cikarang — borderline (check commute or hybrid terms)
+
+Exclude: on-site roles outside Jabodetabek unless relocation is explicitly wanted.
 
 ## Language Filter
 
